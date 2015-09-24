@@ -12,15 +12,16 @@ const OAuthProvider = {
     authorizeURL: "https://www.hatena.ne.jp/oauth/authorize?oauth_token="
 };
 export default class AuthenticationWindow {
-    constructor({ key , secret , scopes=[]}) {
+    constructor({ key , secret , scopes=[], provider = OAuthProvider}) {
         assert(key, "OAuth Consumer Key is needed!");
         assert(secret, "OAuth Consumer Secret is needed!");
         var scopeQuery = scopes.length > 0 ? `?scope=${buildScope(scopes)}` : "";
         this.consumerKey = key;
         this.consumerSecret = secret;
         this.OAuthProvider = {
-            requestTokenURL: `${OAuthProvider.requestTokenURL}${scopeQuery}`,
-            accessTokenURL: OAuthProvider.accessTokenURL
+            requestTokenURL: `${provider.requestTokenURL}${scopeQuery}`,
+            accessTokenURL: provider.accessTokenURL,
+            authorizeURL: provider.authorizeURL
         };
         this.window = null;
         this.resolve = null;
@@ -47,7 +48,7 @@ export default class AuthenticationWindow {
             }
             var oauthRequestToken = oauthToken;
             var oauthRequestTokenSecret = oauthTokenSecret;
-            var authorizeURL = OAuthProvider.authorizeURL + oauthRequestToken;
+            var authorizeURL = this.OAuthProvider.authorizeURL + oauthRequestToken;
             this.getAccessToken(oauth, oauthRequestToken, oauthRequestTokenSecret, authorizeURL);
         });
         return deferredPromise;
