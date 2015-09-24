@@ -5,6 +5,7 @@ import BrowserWindow from 'browser-window'
 import {OAuth} from "oauth";
 import {buildScope} from "./hatenaOauth";
 // ref: https://github.com/kymmt90/blog/blob/76fe9265df6f55b13d6ecd2d33168464926259bd/hatena_oauth.md
+// http://qiita.com/n0bisuke/items/c12963e0bde614443adf
 const OAuthProvider = {
     requestTokenURL: "https://www.hatena.com/oauth/initiate",
     accessTokenURL: "https://www.hatena.com/oauth/token",
