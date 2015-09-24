@@ -27,7 +27,9 @@
     "prepublish": "npm run --if-present build"
   },
   "keywords": [
-    "electron"
+    "electron",
+    "hatena",
+    "oauth"
   ],
   "devDependencies": {},
   "dependencies": {
