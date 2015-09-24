@@ -10,6 +10,8 @@ http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
 
 ## Usage
 
+![screenshot](https://monosnap.com/file/MLylHNva1bcWgIWOx88gd8C19RtZ5L.png)
+
 See [example](example/) app.
 
 ```js
