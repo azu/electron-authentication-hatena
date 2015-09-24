@@ -62,7 +62,6 @@ export default class AuthenticationWindow {
                 var verified = matched[2];
                 oauth.getOAuthAccessToken(requestToken, requestTokenSecret, verified, (error, accessToken, accessTokenSecret) => {
                     if (error) {
-                        console.log(error);
                         return this.reject(error);
                     }
                     this.resolve({
