@@ -46,3 +46,7 @@ hatena.startRequest().then(function (result) {
 ## License
 
 MIT
+
+## Acknowledgement
+
+- http://qiita.com/Quramy/items/fc79cad92bb287478076

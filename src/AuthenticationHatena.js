@@ -15,7 +15,7 @@ export default class AuthenticationWindow {
     constructor({ key , secret , scopes=[], provider = OAuthProvider}) {
         assert(key, "OAuth Consumer Key is needed!");
         assert(secret, "OAuth Consumer Secret is needed!");
-        var scopeQuery = scopes.length > 0 ? `?scope=${buildScope(scopes)}` : "";
+        let scopeQuery = scopes.length > 0 ? `?scope=${buildScope(scopes)}` : "";
         this.consumerKey = key;
         this.consumerSecret = secret;
         this.OAuthProvider = {
@@ -29,16 +29,16 @@ export default class AuthenticationWindow {
     }
 
     startRequest() {
-        var oauth = new OAuth(
+        let oauth = new OAuth(
             this.OAuthProvider.requestTokenURL,
             this.OAuthProvider.accessTokenURL,
             this.consumerKey,
             this.consumerSecret,
             "1.0",
             "https://example.com/auth/callback",
-            "HMAC-SHA1"
+            "HMAC-sSHA1"
         );
-        var deferredPromise = new Promise((resolve, reject) => {
+        let deferredPromise = new Promise((resolve, reject) => {
             this.resolve = resolve;
             this.reject = reject;
         });
@@ -46,22 +46,23 @@ export default class AuthenticationWindow {
             if (error) {
                 return this.reject(error);
             }
-            var oauthRequestToken = oauthToken;
-            var oauthRequestTokenSecret = oauthTokenSecret;
-            var authorizeURL = this.OAuthProvider.authorizeURL + oauthRequestToken;
+            let oauthRequestToken = oauthToken;
+            let oauthRequestTokenSecret = oauthTokenSecret;
+            let authorizeURL = this.OAuthProvider.authorizeURL + oauthRequestToken;
             this.getAccessToken(oauth, oauthRequestToken, oauthRequestTokenSecret, authorizeURL);
         });
         return deferredPromise;
     }
 
     // ref. https://github.com/r7kamura/retro-twitter-client/blob/master/src/browser/authentication-window.js
+    // http://qiita.com/Quramy/items/fc79cad92bb287478076
     getAccessToken(oauth, requestToken, requestTokenSecret, authorizeURL) {
         this.window = new BrowserWindow({width: 800, height: 600, 'node-integration': false});
         this.window.webContents.on('will-navigate', (event, url) => {
             let matched;
             if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
-                var verified = matched[2];
-                oauth.getOAuthAccessToken(requestToken, requestTokenSecret, verified, (error, accessToken, accessTokenSecret) => {
+                let [all, oauthToken, oauthVerifier] = matched;
+                oauth.getOAuthAccessToken(requestToken, requestTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
                     if (error) {
                         return this.reject(error);
                     }
