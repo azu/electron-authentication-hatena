@@ -76,7 +76,9 @@ export default class AuthenticationWindow {
         });
         this.window.webContents.on('will-navigate', (event, url) => {
             let matched;
-            if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
+            // + pass decoded url as verifier
+            let decodedURL = decodeURIComponent(url);
+            if (matched = decodedURL.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
                 let [all, oauthToken, oauthVerifier] = matched;
                 oauth.getOAuthAccessToken(requestToken, requestTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
                     if (error) {
