@@ -34,7 +34,7 @@ export default class AuthenticationWindow {
             this.consumerKey,
             this.consumerSecret,
             "1.0",
-            "http://example.com/auth/callback",
+            "https://example.com/auth/callback",
             "HMAC-SHA1"
         );
         var deferredPromise = new Promise((resolve, reject) => {
