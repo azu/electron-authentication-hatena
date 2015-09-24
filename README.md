@@ -1,6 +1,6 @@
 # electron-authentication-hatena
 
-This library that help to login by OAuth API for Hatena.
+This [Electron](http://electron.atom.io/ "Electron") library that help to login by OAuth for Hatena.
 
 http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
 
