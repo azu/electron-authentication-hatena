@@ -1,0 +1,37 @@
+{
+  "name": "electron-authentication-hatena",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/electron-authentication-hatena.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/electron-authentication-hatena",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/electron-authentication-hatena/issues"
+  },
+  "version": "1.0.0",
+  "description": "Hatena OAuth Window library.",
+  "main": "lib/AuthenticationHatena.js",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib --source-maps",
+    "watch": "babel src --out-dir lib --watch --source-maps",
+    "prepublish": "npm run --if-present build"
+  },
+  "keywords": [
+    "electron"
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {
+    "oauth": "^0.9.14"
+  }
+}
