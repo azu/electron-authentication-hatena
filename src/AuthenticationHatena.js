@@ -36,11 +36,24 @@ export default class AuthenticationWindow {
             this.consumerSecret,
             "1.0",
             "https://example.com/auth/callback",
-            "HMAC-sSHA1"
+            "HMAC-SHA1"
         );
         let deferredPromise = new Promise((resolve, reject) => {
-            this.resolve = resolve;
-            this.reject = reject;
+            var isResolved = false;
+            this.resolve = (value) => {
+                if (isResolved) {
+                    return;
+                }
+                isResolved = true;
+                resolve(value);
+            };
+            this.reject = (error)=> {
+                if (isResolved) {
+                    return;
+                }
+                isResolved = true;
+                reject(error);
+            };
         });
         oauth.getOAuthRequestToken((error, oauthToken, oauthTokenSecret) => {
             if (error) {
@@ -58,13 +71,20 @@ export default class AuthenticationWindow {
     // http://qiita.com/Quramy/items/fc79cad92bb287478076
     getAccessToken(oauth, requestToken, requestTokenSecret, authorizeURL) {
         this.window = new BrowserWindow({width: 800, height: 600, 'node-integration': false});
+        this.window.on("close", () => {
+            this.reject(new Error("the window is closed before complete the authentication."));
+        });
         this.window.webContents.on('will-navigate', (event, url) => {
             let matched;
             if (matched = url.match(/\?oauth_token=([^&]*)&oauth_verifier=([^&]*)/)) {
                 let [all, oauthToken, oauthVerifier] = matched;
                 oauth.getOAuthAccessToken(requestToken, requestTokenSecret, oauthVerifier, (error, accessToken, accessTokenSecret) => {
                     if (error) {
-                        return this.reject(error);
+                        this.reject(error);
+                        setImmediate(() => {
+                            this.window.close();
+                        });
+                        return;
                     }
                     this.resolve({
                         accessToken: accessToken,
