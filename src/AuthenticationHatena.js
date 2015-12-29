@@ -74,7 +74,7 @@ export default class AuthenticationWindow {
         this.window.on("close", () => {
             this.reject(new Error("the window is closed before complete the authentication."));
         });
-        this.window.webContents.on('will-navigate', (event, url) => {
+        var onLoadURL = (event, url) => {
             let matched;
             // + pass decoded url as verifier
             let decodedURL = decodeURIComponent(url);
@@ -99,10 +99,15 @@ export default class AuthenticationWindow {
                 event.preventDefault();
             } else if (matched = url.match(/&redirect_after_login_verification=([^&]*)/)) {
                 this.window.webContents.on('did-get-redirect-request', (event, oldUrl, newUrl, isMainFrame) => {
-                    this.getAccessToken(twitter, requestToken, requestTokenSecret, newUrl);
+                    this.getAccessToken(oauth, requestToken, requestTokenSecret, newUrl);
                 });
             }
+        };
+
+        this.window.webContents.on('did-get-redirect-request', (event, oldURL, newURL) => {
+            onLoadURL(event, newURL)
         });
-        this.window.loadUrl(authorizeURL);
+        this.window.webContents.on('will-navigate', onLoadURL);
+        this.window.loadURL(authorizeURL);
     }
 }
