@@ -1,7 +1,7 @@
 // LICENSE : MIT
 "use strict";
 import assert from "assert";
-import BrowserWindow from 'browser-window'
+import {BrowserWindow} from 'electron';
 import {OAuth} from "oauth";
 import {buildScope} from "./hatenaOauth";
 // ref: https://github.com/kymmt90/blog/blob/76fe9265df6f55b13d6ecd2d33168464926259bd/hatena_oauth.md

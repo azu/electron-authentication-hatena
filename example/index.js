@@ -1,6 +1,9 @@
 // LICENSE : MIT
 "use strict";
-var dialog = require('dialog');
+
+const electron = require('electron');
+const dialog = electron.dialog;
+
 var CONSUMER = {
     key: 'elj9OpeplSmpfA==',
     secret: '1hqDhJ2BfB6kozd/nHeLIW7WC/Y='
