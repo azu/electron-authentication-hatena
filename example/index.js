@@ -4,13 +4,13 @@
 const electron = require('electron');
 const dialog = electron.dialog;
 
-var CONSUMER = {
+const CONSUMER = {
     key: 'elj9OpeplSmpfA==',
     secret: '1hqDhJ2BfB6kozd/nHeLIW7WC/Y='
 };
-var AuthenticationHatena = require("electron-authentication-hatena");
+const AuthenticationHatena = require("electron-authentication-hatena");
 // http://developer.hatena.com/ja/documents/auth/apis/oauth/consumer
-var hatena = new AuthenticationHatena({
+const hatena = new AuthenticationHatena({
     key: CONSUMER.key,
     secret: CONSUMER.secret,
     scopes: ["read_public", "write_public"]

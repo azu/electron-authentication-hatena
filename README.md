@@ -15,14 +15,16 @@ http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
 See [example](example/) app.
 
 ```js
-var dialog = require('dialog');
-var CONSUMER = {
+const electron = require('electron');
+const dialog = electron.dialog;
+
+const CONSUMER = {
     key: '______',
     secret: '_______'
 };
-var AuthenticationHatena = require("electron-authentication-hatena");
+const AuthenticationHatena = require("electron-authentication-hatena");
 // http://developer.hatena.com/ja/documents/auth/apis/oauth/consumer
-var hatena = new AuthenticationHatena({
+const hatena = new AuthenticationHatena({
     key: CONSUMER.key,
     secret: CONSUMER.secret,
     scopes: ["read_public", "write_public"]
@@ -35,6 +37,7 @@ hatena.startRequest().then(function (result) {
 }).catch(function (error) {
     console.error(error, error.stack);
 });
+
 ```
 
 ## Contributing
