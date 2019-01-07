@@ -22,7 +22,7 @@
     "src"
   ],
   "main": "lib/AuthenticationHatena.js",
-  "types": "lib/electron-authentication-hatena.d.ts",
+  "types": "lib/AuthenticationHatena.d.ts",
   "directories": {
     "test": "test"
   },
