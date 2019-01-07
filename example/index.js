@@ -8,7 +8,7 @@ const CONSUMER = {
     key: 'elj9OpeplSmpfA==',
     secret: '1hqDhJ2BfB6kozd/nHeLIW7WC/Y='
 };
-const AuthenticationHatena = require("electron-authentication-hatena");
+const AuthenticationHatena = require("../lib/AuthenticationHatena.js").AuthenticationHatena;
 // http://developer.hatena.com/ja/documents/auth/apis/oauth/consumer
 const hatena = new AuthenticationHatena({
     key: CONSUMER.key,
