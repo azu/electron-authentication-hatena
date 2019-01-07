@@ -2,7 +2,9 @@
 
 This [Electron](http://electron.atom.io/ "Electron") library that help to login by OAuth for Hatena.
 
-http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
+はてなサービス(はてなブックマークなど)のAPI利用に必要なOAuth認証を行うライブラリです。
+
+- http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
 
 ## Installation
 
