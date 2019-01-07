@@ -1,6 +1,6 @@
 {
   "name": "electron-authentication-hatena",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Hatena OAuth Window library.",
   "keywords": [
     "electron",
