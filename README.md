@@ -14,6 +14,12 @@ http://developer.hatena.ne.jp/ja/documents/auth/apis/oauth
 
 See [example](example/) app.
 
+```
+npm run example
+```
+
+Code:
+
 ```js
 const electron = require('electron');
 const dialog = electron.dialog;
@@ -22,7 +28,7 @@ const CONSUMER = {
     key: '______',
     secret: '_______'
 };
-const AuthenticationHatena = require("electron-authentication-hatena");
+const AuthenticationHatena = require("electron-authentication-hatena").AuthenticationHatena;
 // http://developer.hatena.com/ja/documents/auth/apis/oauth/consumer
 const hatena = new AuthenticationHatena({
     key: CONSUMER.key,
