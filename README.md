@@ -1,4 +1,4 @@
-# electron-authentication-hatena
+# electron-authentication-hatena [![Build Status](https://travis-ci.org/azu/electron-authentication-hatena.svg?branch=master)](https://travis-ci.org/azu/electron-authentication-hatena)
 
 This [Electron](http://electron.atom.io/ "Electron") library that help to login by OAuth for Hatena.
 
